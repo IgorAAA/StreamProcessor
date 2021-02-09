@@ -5,7 +5,7 @@ name := "StreamProcessor"
 
 version := "0.0.1"
 
-scalaVersion := "2.13.2"
+scalaVersion := "2.13.3"
 
 lazy val main = project
   .in(file("."))
@@ -14,5 +14,7 @@ lazy val main = project
     description := "Stream Processor",
     name := "Stream Processor",
     normalizedName := "stream-processor",
-    libraryDependencies ++= Seq(Fs2.fs2Kafka, chimney) ++ Http4s.all
+    libraryDependencies ++= Seq(Fs2.fs2Kafka, catsTime, chimney, pureConfig, epimetheus) ++ Http4s.all ++ Circe.all ++ Logging.all
   )
+
+addCompilerPlugin(("org.typelevel" %% "kind-projector" % "0.11.0").cross(CrossVersion.full))
